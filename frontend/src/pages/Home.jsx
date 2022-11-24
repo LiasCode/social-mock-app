@@ -1,10 +1,8 @@
 import styled from "styled-components";
-import Header from "../components/Header";
-import { MainLayout } from "../styles/GlobalStyles";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const url = "http://0.0.0.0:8080/api/pics";
+const url = "https://social-mock-app.onrender.com";
 
 export default function Home() {
   const [data, setData] = useState(null);
@@ -18,17 +16,13 @@ export default function Home() {
 
   return (
     <>
-      <Header />
+      <h1> Home </h1>
 
-      <MainLayout>
-        <h1> Home </h1>
+      <Container>
+        {!data && <span>...loading</span>}
 
-        <Container>
-          {!data && <span>...loading</span>}
-
-          {data && data.map((el) => <PicsBox key={el}>{el}</PicsBox>)}
-        </Container>
-      </MainLayout>
+        {data && data.map((el) => <PicsBox key={el}>{el}</PicsBox>)}
+      </Container>
     </>
   );
 }
